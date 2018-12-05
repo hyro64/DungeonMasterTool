@@ -13,7 +13,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 
-public class ToolDriver extends Application implements FileMenuInterface {
+public class ToolDriver extends Application implements FileMenuInterface{
     /*******************************************************************************************************************
      * Main Driver resources
      * ****************************************************************************************************************/
@@ -366,7 +366,6 @@ public class ToolDriver extends Application implements FileMenuInterface {
 
         return plyrStatsVBox[inPlayerIndex];
     }
-
     private TextField init_playerName_Tf(TextField in_TF_Array[], int playerIndex, int columns){
         // creates a text field array to keep the track of elements (Done)
         uni_create_TF(in_TF_Array,playerIndex);
@@ -405,6 +404,7 @@ public class ToolDriver extends Application implements FileMenuInterface {
         inSlider[inPlayerIndex].setOrientation(Orientation.VERTICAL);
         return inSlider[inPlayerIndex];
     }
+
     private void createActions() {
         /***************************************************************************************************************
          * Creates the action for the buttons of the main window
