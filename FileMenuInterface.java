@@ -2,7 +2,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 
-public interface fileMenu {
+public interface FileMenuInterface {
     int WIDTH = 450, HEIGHT = 400;
     // "File" root menu that is diplayed
     Menu fileMenu = new Menu("File");
