@@ -13,7 +13,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 
-public class ToolDriver extends Application implements fileMenu{
+public class ToolDriver extends Application implements FileMenuInterface {
     /*******************************************************************************************************************
      * Main Driver resources
      * ****************************************************************************************************************/
