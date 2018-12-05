@@ -404,7 +404,27 @@ public class ToolDriver extends Application implements FileMenuInterface{
         inSlider[inPlayerIndex].setOrientation(Orientation.VERTICAL);
         return inSlider[inPlayerIndex];
     }
+//-------------------------------------------FILE_MENU_METHODS----------------------------------------------------------
+    private void saveCampaign() {
+        String FIE_playerNames[] = new String[playerIndex];
+        String FIE_playerLvl[] = new String[playerIndex];
+        String FIE_playerAC[] = new String[playerIndex];
+        String FIE_playerHP[] = new String[playerIndex];
+        String FIE_playerStr[] = new String[playerIndex];
+        String FIE_playerDex[] = new String[playerIndex];
+        String FIE_playerCon[] = new String[playerIndex];
+        String FIE_playerInt[] = new String[playerIndex];
+        String FIE_playerWis[] = new String[playerIndex];
+        String FIE_playerCha[] = new String[playerIndex];
+        for (int currentplyr = 0; currentplyr < playerIndex || currentplyr < userMaxPlayer; currentplyr++){
 
+        }
+
+        FileImportExport sC = new FileImportExport(playerIndex,FIE_playerNames, FIE_playerLvl, FIE_playerAC,
+                FIE_playerHP,FIE_playerStr,FIE_playerDex,FIE_playerCon,FIE_playerInt,FIE_playerWis,FIE_playerCha);
+
+    }
+//-------------------------------------------END_FILE_METHODS-----------------------------------------------------------
     private void createActions() {
         /***************************************************************************************************************
          * Creates the action for the buttons of the main window

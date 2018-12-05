@@ -75,12 +75,4 @@ public class FileImportExport {
             }
         }
     }
-
-    public static void main(String[] args) {
-        createFile(fileName, saveCampaign(playerSaveSize, playerNames, playerLvl, playerAc,
-        playerHp, playerStr, playerDex, playerCon, playerInt, playerWis, playerCha));
-
-    }
-
-
 }
