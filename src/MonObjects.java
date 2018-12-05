@@ -1,5 +1,5 @@
 
-public class MonObjs {
+public class MonObjects {
 
     protected String name;
     protected int amourClass;
@@ -30,14 +30,14 @@ public class MonObjs {
      * Basic constructors for monster. Must have at least Name, Armour Class, and speed. Each iteration will be
      * incremental. New window that creates monster must be added in future updates.
      * ****************************************************************************************************************/
-    public MonObjs(String inName, int inArmorC, int inHp) {
+    public MonObjects(String inName, int inArmorC, int inHp) {
         // Creates a basic monster Used
         this.name = inName;
         this.amourClass = inArmorC;
         this.hitP = inHp;
     }
     // Goes up to Strength Mod
-    public MonObjs(String name, int amourClass, int hitP, String speed, int str, int strModifier) {
+    public MonObjects(String name, int amourClass, int hitP, String speed, int str, int strModifier) {
         this.name = name;
         this.amourClass = amourClass;
         this.hitP = hitP;
@@ -46,8 +46,8 @@ public class MonObjs {
         this.strModifier = strModifier;
     }
     // Goes up to Dexterity Modifier
-    public MonObjs(String name, int amourClass, int hitP, String speed, int str, int strModifier, int dex,
-                   int dexModifier) {
+    public MonObjects(String name, int amourClass, int hitP, String speed, int str, int strModifier, int dex,
+                      int dexModifier) {
         this.name = name;
         this.amourClass = amourClass;
         this.hitP = hitP;
@@ -58,8 +58,8 @@ public class MonObjs {
         this.dexModifier = dexModifier;
     }
     // Goes up to Intelligence mod
-    public MonObjs(String name, int amourClass, int hitP, String speed, int str, int strModifier, int dex,
-                   int dexModifier, int con, int conModifier, int intel, int intelModifier) {
+    public MonObjects(String name, int amourClass, int hitP, String speed, int str, int strModifier, int dex,
+                      int dexModifier, int con, int conModifier, int intel, int intelModifier) {
         this.name = name;
         this.amourClass = amourClass;
         this.hitP = hitP;
@@ -74,9 +74,9 @@ public class MonObjs {
         this.intelModifier = intelModifier;
     }
     // Goes up to the Wisdom Modifier
-    public MonObjs(String name, int amourClass, int hitP, String speed, int str, int strModifier, int dex,
-                   int dexModifier, int con, int conModifier, int intel, int intelModifier, int wis,
-                   int wisModifier) {
+    public MonObjects(String name, int amourClass, int hitP, String speed, int str, int strModifier, int dex,
+                      int dexModifier, int con, int conModifier, int intel, int intelModifier, int wis,
+                      int wisModifier) {
         this.name = name;
         this.amourClass = amourClass;
         this.hitP = hitP;
@@ -93,13 +93,13 @@ public class MonObjs {
         this.wisModifier = wisModifier;
     }
     // Goes up to Charisma modifier
-    public MonObjs(String name, int amourClass, int hitP, String speed,
-                   int str, int strModifier,
-                   int dex, int dexModifier,
-                   int con, int conModifier,
-                   int intel, int intelModifier,
-                   int wis, int wisModifier,
-                   int cha, int chaModifier) {
+    public MonObjects(String name, int amourClass, int hitP, String speed,
+                      int str, int strModifier,
+                      int dex, int dexModifier,
+                      int con, int conModifier,
+                      int intel, int intelModifier,
+                      int wis, int wisModifier,
+                      int cha, int chaModifier) {
         this.name = name;
         this.amourClass = amourClass;
         this.hitP = hitP;
@@ -119,21 +119,21 @@ public class MonObjs {
     }
 
     // All of the basic Information
-    public MonObjs(String name, int armorClass,
-                   int hitP, String speed,
-                   int str, int strModifier,
-                   int dex, int dexModifier,
-                   int con, int conModifier,
-                   int intel, int intelModifier,
-                   int wis, int wisModifier,
-                   int cha, int chaModifier,
-                   int[] savingThrows, int profiBonus,
-                   int skillUp,
-                   String[] damageRes,
-                   String[] conditionImmun,
-                   String[] senses,
-                   String[] languages,
-                   int challenge) {
+    public MonObjects(String name, int armorClass,
+                      int hitP, String speed,
+                      int str, int strModifier,
+                      int dex, int dexModifier,
+                      int con, int conModifier,
+                      int intel, int intelModifier,
+                      int wis, int wisModifier,
+                      int cha, int chaModifier,
+                      int[] savingThrows, int profiBonus,
+                      int skillUp,
+                      String[] damageRes,
+                      String[] conditionImmun,
+                      String[] senses,
+                      String[] languages,
+                      int challenge) {
         this.name = name;
         this.amourClass = armorClass;
         this.hitP = hitP;

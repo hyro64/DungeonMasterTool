@@ -23,7 +23,7 @@ public class MonsterGenerator implements FileMenuInterface {
             closeButton = new Button("Close"),
             aD_addButton = new Button("New");
     private Label aD_label = new Label();
-    private TableView<MonObjs> monTable;
+    private TableView<MonObjects> monTable;
     private ComboBox<String> minMonster = new ComboBox<>();
     private ComboBox<String> maxMonster = new ComboBox<>();
     //******************************************************************************************************************
@@ -57,80 +57,80 @@ public class MonsterGenerator implements FileMenuInterface {
      * the first block of each column is what will be seen. the new property value string is the way that the list area
      * gets the variables of the objects
      * ****************************************************************************************************************/
-    private TableView<MonObjs> monTableCreate() {
-        TableColumn<MonObjs, String> nameColumn = new TableColumn<>("Name");    // The top ones are the name of the column
+    private TableView<MonObjects> monTableCreate() {
+        TableColumn<MonObjects, String> nameColumn = new TableColumn<>("Name");    // The top ones are the name of the column
         nameColumn.setMinWidth(200);
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));         // Name of the variable in the objects
 
-        TableColumn<MonObjs, Integer> aC_column = new TableColumn<>("Amour Class");
+        TableColumn<MonObjects, Integer> aC_column = new TableColumn<>("Amour Class");
         aC_column.setMinWidth(100);
         aC_column.setCellValueFactory(new PropertyValueFactory<>("amourClass"));
 
-        TableColumn<MonObjs, Integer> hP_Column = new TableColumn<>("Hit Points");
+        TableColumn<MonObjects, Integer> hP_Column = new TableColumn<>("Hit Points");
         hP_Column.setMinWidth(100);
         hP_Column.setCellValueFactory(new PropertyValueFactory<>("hitP"));
 
-        TableColumn<MonObjs, String> spdColumn = new TableColumn<>("Speed");
+        TableColumn<MonObjects, String> spdColumn = new TableColumn<>("Speed");
         spdColumn.setMinWidth(100);
         spdColumn.setCellValueFactory(new PropertyValueFactory<>("speed"));
 
-        TableColumn<MonObjs, Integer> strColumn = new TableColumn<>("Strength");
+        TableColumn<MonObjects, Integer> strColumn = new TableColumn<>("Strength");
         strColumn.setMinWidth(100);
         strColumn.setCellValueFactory(new PropertyValueFactory<>("str"));
 
-        TableColumn<MonObjs, Integer> strModColumn = new TableColumn<>("Str Mod.");
+        TableColumn<MonObjects, Integer> strModColumn = new TableColumn<>("Str Mod.");
         strModColumn.setMinWidth(100);
         strModColumn.setCellValueFactory(new PropertyValueFactory<>("strModifier"));
 
-        TableColumn<MonObjs, Integer> dexColumn = new TableColumn<>("Dexterity");
+        TableColumn<MonObjects, Integer> dexColumn = new TableColumn<>("Dexterity");
         dexColumn.setMinWidth(100);
         dexColumn.setCellValueFactory(new PropertyValueFactory<>("dex"));
 
-        TableColumn<MonObjs, Integer> dexModColumn = new TableColumn<>("Dex.Mod");
+        TableColumn<MonObjects, Integer> dexModColumn = new TableColumn<>("Dex.Mod");
         dexModColumn.setMinWidth(100);
         dexModColumn.setCellValueFactory(new PropertyValueFactory<>("dexModifier"));
 
-        TableColumn<MonObjs, Integer> consColumn = new TableColumn<>("Constitution");
+        TableColumn<MonObjects, Integer> consColumn = new TableColumn<>("Constitution");
         consColumn.setMinWidth(100);
         consColumn.setCellValueFactory(new PropertyValueFactory<>("con"));
 
-        TableColumn<MonObjs, Integer> consModColumn = new TableColumn<>("Con.Mod");
+        TableColumn<MonObjects, Integer> consModColumn = new TableColumn<>("Con.Mod");
         consModColumn.setMinWidth(100);
         consModColumn.setCellValueFactory(new PropertyValueFactory<>("conModifier"));
 
-        TableColumn<MonObjs, Integer> intelColumn = new TableColumn<>("Intelligence");
+        TableColumn<MonObjects, Integer> intelColumn = new TableColumn<>("Intelligence");
         intelColumn.setMinWidth(100);
         intelColumn.setCellValueFactory(new PropertyValueFactory<>("intel"));
 
-        TableColumn<MonObjs, Integer> intModColumn = new TableColumn<>("Int.Mod");
+        TableColumn<MonObjects, Integer> intModColumn = new TableColumn<>("Int.Mod");
         intModColumn.setMinWidth(100);
         intModColumn.setCellValueFactory(new PropertyValueFactory<>("intelModifier"));
 
-        TableColumn<MonObjs, Integer> wisColumn = new TableColumn<>("Wisdom");
+        TableColumn<MonObjects, Integer> wisColumn = new TableColumn<>("Wisdom");
         wisColumn.setMinWidth(100);
         wisColumn.setCellValueFactory(new PropertyValueFactory<>("wis"));
 
-        TableColumn<MonObjs, Integer> wisModColumn = new TableColumn<>("Wis.Mod");
+        TableColumn<MonObjects, Integer> wisModColumn = new TableColumn<>("Wis.Mod");
         wisModColumn.setMinWidth(100);
         wisModColumn.setCellValueFactory(new PropertyValueFactory<>("wisModifier"));
 
-        TableColumn<MonObjs, Integer> chaColumn = new TableColumn<>("Charisma");
+        TableColumn<MonObjects, Integer> chaColumn = new TableColumn<>("Charisma");
         chaColumn.setMinWidth(100);
         chaColumn.setCellValueFactory(new PropertyValueFactory<>("cha"));
 
-        TableColumn<MonObjs, Integer> chaModColumn = new TableColumn<>("Cha Mod");
+        TableColumn<MonObjects, Integer> chaModColumn = new TableColumn<>("Cha Mod");
         chaModColumn.setMinWidth(100);
         chaModColumn.setCellValueFactory(new PropertyValueFactory<>("chaModifier"));
 
-        TableColumn<MonObjs, Integer> profiBonusColumn = new TableColumn<>("Proficiency");
+        TableColumn<MonObjects, Integer> profiBonusColumn = new TableColumn<>("Proficiency");
         profiBonusColumn.setMinWidth(100);
         profiBonusColumn.setCellValueFactory(new PropertyValueFactory<>("profiBonus"));
 
-        TableColumn<MonObjs, Integer> skillUpBonusColumn = new TableColumn<>("Exp");
+        TableColumn<MonObjects, Integer> skillUpBonusColumn = new TableColumn<>("Exp");
         skillUpBonusColumn.setMinWidth(100);
         skillUpBonusColumn.setCellValueFactory(new PropertyValueFactory<>("skillUp"));
 
-        TableColumn<MonObjs, Integer> challengeColumn = new TableColumn<>("Challenge");
+        TableColumn<MonObjects, Integer> challengeColumn = new TableColumn<>("Challenge");
         challengeColumn.setMinWidth(100);
         challengeColumn.setCellValueFactory(new PropertyValueFactory<>("challenge"));
 
@@ -153,10 +153,10 @@ public class MonsterGenerator implements FileMenuInterface {
      * Creates the monsters in the random Encounter list area. The list of the objects are created from a text file.
      * (File(s) not added yet)
      * ****************************************************************************************************************/
-    private ObservableList<MonObjs> createMonList() {
-        ObservableList<MonObjs> monsterEncounterList = FXCollections.observableArrayList();
-        monsterEncounterList.add(new MonObjs("Goblin",15,15));
-        monsterEncounterList.add(new MonObjs("Bugbear",16,27,"30 ft.",15,
+    private ObservableList<MonObjects> createMonList() {
+        ObservableList<MonObjects> monsterEncounterList = FXCollections.observableArrayList();
+        monsterEncounterList.add(new MonObjects("Goblin",15,15));
+        monsterEncounterList.add(new MonObjects("Bugbear",16,27,"30 ft.",15,
                 2));
         return monsterEncounterList;
     }
