@@ -42,12 +42,12 @@ public class ToolDriver extends Application implements FileMenuInterface{
     private VBox plyrStatsVBox[] = new VBox[maxPlayer];
     private VBox player_Hp_label_VBox[] = new VBox[maxPlayer];
 
-    private TextField hp_Indicator_TF[] = new TextField[maxPlayer];
+    private TextField aC_Indicator_TF[] = new TextField[maxPlayer];
     private TextField hPIndicator[] = new TextField[maxPlayer];
     private TextField playerName[] = new TextField[maxPlayer];
     private TextField playerStats[][][] = new TextField[maxPlayer][6][2];
 
-    private Label hp_Label[] = new Label[maxPlayer];
+    private Label Ac_Label[] = new Label[maxPlayer];
     private Label plyrLvlSelection[] = new Label[maxPlayer];
     private Label plyrStatLabel[][][] = new Label[maxPlayer][6][2];
 
@@ -234,24 +234,24 @@ public class ToolDriver extends Application implements FileMenuInterface{
             return inPlusMinusButton[playerIndex][1];
         }
     }
-    private VBox init_HpVbTfLbl(int inPlyrIndex) {
+    private VBox init_HpVbTfLbl(int inPlayerIndex) {
         /***************************************************************************************************************
-         * Creates the VBox that holds the Hit Points label and text field.
+         * Creates the VBox that holds the Amour class label and text field.
          * ************************************************************************************************************/
-        player_Hp_label_VBox[inPlyrIndex] = new VBox();             // Holds the label and text field
-        playHp_Label_HBox[inPlyrIndex][0] = new HBox();             // Holds the label for Hit points
-        playHp_Label_HBox[inPlyrIndex][1] = new HBox();             // Holds the Text Field for quick hp change
+        player_Hp_label_VBox[inPlayerIndex] = new VBox();             // Holds the label and text field
+        playHp_Label_HBox[inPlayerIndex][0] = new HBox();             // Holds the label for Hit points
+        playHp_Label_HBox[inPlayerIndex][1] = new HBox();             // Holds the Text Field for quick hp change
 
-        uni_create_TF(hp_Indicator_TF,inPlyrIndex);
-        uni_makeLabel(hp_Label,inPlyrIndex,"HitPoint:");
-        playHp_Label_HBox[inPlyrIndex][0].getChildren().addAll(hp_Label[inPlyrIndex]);
-        playHp_Label_HBox[inPlyrIndex][1].getChildren().addAll(hp_Indicator_TF[inPlyrIndex]);
+        uni_create_TF(aC_Indicator_TF,inPlayerIndex);
+        uni_makeLabel(Ac_Label,inPlayerIndex,"Armour class:");
+        playHp_Label_HBox[inPlayerIndex][0].getChildren().addAll(Ac_Label[inPlayerIndex]);
+        playHp_Label_HBox[inPlayerIndex][1].getChildren().addAll(aC_Indicator_TF[inPlayerIndex]);
 
-        player_Hp_label_VBox[inPlyrIndex].getChildren().addAll(
-                playHp_Label_HBox[inPlyrIndex][0],
-                playHp_Label_HBox[inPlyrIndex][1]);
+        player_Hp_label_VBox[inPlayerIndex].getChildren().addAll(
+                playHp_Label_HBox[inPlayerIndex][0],
+                playHp_Label_HBox[inPlayerIndex][1]);
 
-        return player_Hp_label_VBox[inPlyrIndex];
+        return player_Hp_label_VBox[inPlayerIndex];
     }
     private VBox init_PlayerStats(VBox plyrStatsVBox[], HBox plyrStats_Lbl_HBox[][], Label inPlayerStatLabel[][][],
                                   TextField inPlayerStatTF[][][], int inPlayerIndex) {
@@ -347,12 +347,6 @@ public class ToolDriver extends Application implements FileMenuInterface{
                 inPlayerStatTF[inPlayerIndex][5][0],
                 inPlayerStatTF[inPlayerIndex][5][1]
         );
-
-
-//        inPlayerStatLabel[inPlayerIndex][5] = new Label("Charisma");
-//        inPlayerStatTF[inPlayerIndex][5] = new TextField();
-//        inPlayerStatTF[inPlayerIndex][5].setPromptText("Cha");
-
         plyrStatsVBox[inPlayerIndex].setAlignment(Pos.CENTER_LEFT);
         plyrStatsVBox[inPlayerIndex].getChildren().addAll(
                 plyrStats_Lbl_HBox[0][0], plyrStats_Lbl_HBox[0][1],
@@ -416,12 +410,22 @@ public class ToolDriver extends Application implements FileMenuInterface{
         String FIE_playerInt[] = new String[playerIndex];
         String FIE_playerWis[] = new String[playerIndex];
         String FIE_playerCha[] = new String[playerIndex];
-        for (int currentplyr = 0; currentplyr < playerIndex || currentplyr < userMaxPlayer; currentplyr++){
+        for (int currentplyr = 0; currentplyr < playerIndex ; currentplyr++){
+            FIE_playerNames[currentplyr] = String.valueOf(playerName[currentplyr].getText());
+            FIE_playerLvl[currentplyr] = String.valueOf(playerLevel_CBox[currentplyr].getValue());
+            FIE_playerAC[currentplyr] = String.valueOf(aC_Indicator_TF[currentplyr].getText());
+            FIE_playerHP[currentplyr] = String.valueOf(hPIndicator[currentplyr].getText());
+            FIE_playerStr[currentplyr] = playerStats[currentplyr][0][0].getText();
+//            FIE_playerDex[] = playerStats[currentplyr][0][0].getText();
+//            FIE_playerCon[]
+
 
         }
-
         FileImportExport sC = new FileImportExport(playerIndex,FIE_playerNames, FIE_playerLvl, FIE_playerAC,
-                FIE_playerHP,FIE_playerStr,FIE_playerDex,FIE_playerCon,FIE_playerInt,FIE_playerWis,FIE_playerCha);
+                FIE_playerHP, FIE_playerStr);
+        sC.createFile("Op1.txt",sC.saveCampaign(FIE_playerNames));
+//        FileImportExport sC = new FileImportExport(playerIndex,FIE_playerNames, FIE_playerLvl, FIE_playerAC,
+//                FIE_playerHP,FIE_playerStr,FIE_playerDex,FIE_playerCon,FIE_playerInt,FIE_playerWis,FIE_playerCha);
 
     }
 //-------------------------------------------END_FILE_METHODS-----------------------------------------------------------
@@ -429,11 +433,13 @@ public class ToolDriver extends Application implements FileMenuInterface{
         /***************************************************************************************************************
          * Creates the action for the buttons of the main window
          * ************************************************************************************************************/
+        // td_button[0] adds the action for add button
         tD_Button[0].setOnAction(e -> createPlayerMarker(MainWindow, playerStats_c_L_AreaHB));
         tD_Button[1].setOnAction(e -> createPlayerMarker(MainWindow, playerStats_c_L_AreaHB));
         // Call to start new Scene
         tD_Button[2].setOnAction(e -> MainWindow.setScene(mnGen.monGenStart(MainWindow,layoutMain,scene_Main)));
         tD_Button[3].setOnAction(e -> reset());
+        saveCamp.setOnAction(e -> saveCampaign());
 
     }
     private void createPlayerMarker(Stage inMainWindow, HBox inCenterAreaHB) {
