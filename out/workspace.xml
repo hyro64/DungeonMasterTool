@@ -1,58 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="937baa04-3535-4e15-9f53-38ab2bb0ecef" name="Default Changelist" comment="" />
+    <list default="true" id="937baa04-3535-4e15-9f53-38ab2bb0ecef" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/FileImportExport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileImportExport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ToolDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ToolDriver.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="387862071">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="1" />
-          <entry key="project.open.time.39" value="1" />
-          <entry key="project.open.time.6" value="1" />
-          <entry key="project.opened" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="java" value="9" />
-          <entry key="txt" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="JAVA" value="9" />
-          <entry key="PLAIN_TEXT" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="java" value="532" />
-          <entry key="txt" value="87" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="JAVA" value="532" />
-          <entry key="PLAIN_TEXT" value="87" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ToolDriver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="520">
-              <caret line="425" column="5" selection-start-line="425" selection-start-column="5" selection-end-line="425" selection-end-column="5" />
+            <state relative-caret-position="230">
+              <caret line="424" selection-start-line="424" selection-end-line="424" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#515#781#0" />
                 <element signature="e#3039#3358#0" />
                 <element signature="e#3363#5705#0" />
                 <element signature="e#5710#8758#0" />
@@ -63,27 +31,27 @@
                 <element signature="e#10879#11297#0" />
                 <element signature="e#11302#11828#0" />
                 <element signature="e#11833#12986#0" />
-                <element signature="e#12991#14187#0" />
-                <element signature="e#14192#19892#0" />
-                <element signature="e#19897#20281#0" />
-                <element signature="e#20286#21134#0" />
-                <element signature="e#21139#21952#0" />
-                <element signature="e#23039#23894#0" />
-                <element signature="e#23899#24432#0" />
-                <element signature="e#24437#25257#0" />
-                <element signature="e#25262#25470#0" />
+                <element signature="e#12991#14220#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Op1.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="10" lean-forward="true" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/FileImportExport.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="20" column="58" selection-start-line="20" selection-start-column="58" selection-end-line="22" selection-end-column="88" />
+            <state relative-caret-position="68">
+              <caret line="6" column="25" lean-forward="true" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
               <folding>
-                <element signature="method#saveCampaign#0;class#FileImportExport#0" />
                 <element signature="method#createFile#0;class#FileImportExport#0" />
               </folding>
             </state>
@@ -109,89 +77,40 @@
         <option value="$PROJECT_DIR$/src/MonsterGenerator.java" />
         <option value="$PROJECT_DIR$/src/MonObjs.java" />
         <option value="$PROJECT_DIR$/src/MonObjects.java" />
-        <option value="$PROJECT_DIR$/src/FileImportExport.java" />
         <option value="$PROJECT_DIR$/src/ToolDriver.java" />
+        <option value="$PROJECT_DIR$/src/FileImportExport.java" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="width" value="981" />
-    <option name="height" value="621" />
+    <option name="x" value="-11" />
+    <option name="width" value="980" />
+    <option name="height" value="1230" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="PackagesPane" proportions="" version="1">
+    <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="DungeonMasterTool" type="58d84e3e:PackageViewProjectNode" />
-              <item name="DungeonMasterTool" type="616d4139:PackageViewModuleNode" />
-            </path>
-            <path>
-              <item name="DungeonMasterTool" type="58d84e3e:PackageViewProjectNode" />
-              <item name="DungeonMasterTool" type="616d4139:PackageViewModuleNode" />
-              <item name="MonResources" type="1f31426a:PackageElementNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="DungeonMasterTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DungeonMasterTool" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DungeonMasterTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DungeonMasterTool" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DungeonMasterTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DungeonMasterTool" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DungeonMasterTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DungeonMasterTool" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DungeonMasterTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DungeonMasterTool" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="MonResources" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544038047187" />
-    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/GitHubDesktop/app-1.5.0/resources/app/git/mingw64/bin/git.exe" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544055678600" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../DungeonTool" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\James\Documents\JAVA\DungeonMasterTool\out" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -235,7 +154,10 @@
       <option name="presentableId" value="Default" />
       <updated>1544029416679</updated>
       <workItem from="1544029419769" duration="2780000" />
-      <workItem from="1544051325649" duration="262000" />
+      <workItem from="1544051325649" duration="4154000" />
+      <workItem from="1544212329526" duration="686000" />
+      <workItem from="1544213441624" duration="125000" />
+      <workItem from="1544214207880" duration="1775000" />
     </task>
     <task id="LOCAL-00001" summary="Restructuring the project">
       <created>1544030794175</created>
@@ -265,11 +187,25 @@
       <option name="project" value="LOCAL" />
       <updated>1544051446180</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Reworked Save Campaign to add the text boxes into a text file">
+      <created>1544055415308</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1544055415308</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added a loop that gathers the information for the stats">
+      <created>1544212963196</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1544212963197</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3042000" />
+    <option name="totallyTimeSpent" value="9520000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -281,10 +217,44 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="19" width="1295" height="802" extended-state="6" />
+    <frame x="-7" y="-7" width="1295" height="828" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2490242" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.49882904" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info id="Learn" order="7" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32884902" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.31293464" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.3977747" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.34104046" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Inspection Results" order="8" weight="0.32884902" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32729805" />
+      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="12" />
+      <window_info anchor="right" id="Maven" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Maven Projects" order="5" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" weight="0.49882904" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -294,8 +264,8 @@
       <window_info id="Learn" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32884902" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.31156462" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.31358382" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39884394" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.34104046" />
@@ -314,20 +284,37 @@
       <window_info anchor="right" id="Database" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
-    </layout>
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <MESSAGE value="Restructuring the project" />
     <MESSAGE value="Restructuring the project to better fit convetions" />
     <MESSAGE value="Adding all files for main rebase" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding all files for main rebase" />
+    <MESSAGE value="Reworked Save Campaign to add the text boxes into a text file" />
+    <MESSAGE value="Added a loop that gathers the information for the stats" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a loop that gathers the information for the stats" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ToolDriver.java</url>
+          <line>424</line>
+          <properties />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/FileImportExport.java</url>
+          <line>38</line>
+          <properties />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/ToolDriver1.java" />
@@ -348,23 +335,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/FileImportExport.java">
+    <entry file="file://$PROJECT_DIR$/src/FileMenuInterface.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="20" column="58" selection-start-line="20" selection-start-column="58" selection-end-line="22" selection-end-column="88" />
-          <folding>
-            <element signature="method#saveCampaign#0;class#FileImportExport#0" />
-            <element signature="method#createFile#0;class#FileImportExport#0" />
-          </folding>
+        <state relative-caret-position="238">
+          <caret line="16" column="21" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Op1.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="10" lean-forward="true" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ToolDriver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="425" column="5" selection-start-line="425" selection-start-column="5" selection-end-line="425" selection-end-column="5" />
+        <state relative-caret-position="230">
+          <caret line="424" selection-start-line="424" selection-end-line="424" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#515#781#0" />
             <element signature="e#3039#3358#0" />
             <element signature="e#3363#5705#0" />
             <element signature="e#5710#8758#0" />
@@ -375,15 +366,17 @@
             <element signature="e#10879#11297#0" />
             <element signature="e#11302#11828#0" />
             <element signature="e#11833#12986#0" />
-            <element signature="e#12991#14187#0" />
-            <element signature="e#14192#19892#0" />
-            <element signature="e#19897#20281#0" />
-            <element signature="e#20286#21134#0" />
-            <element signature="e#21139#21952#0" />
-            <element signature="e#23039#23894#0" />
-            <element signature="e#23899#24432#0" />
-            <element signature="e#24437#25257#0" />
-            <element signature="e#25262#25470#0" />
+            <element signature="e#12991#14220#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FileImportExport.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="25" lean-forward="true" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+          <folding>
+            <element signature="method#createFile#0;class#FileImportExport#0" />
           </folding>
         </state>
       </provider>
