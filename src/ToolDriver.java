@@ -416,8 +416,11 @@ public class ToolDriver extends Application implements FileMenuInterface{
             FIE_playerAC[currentplyr] = String.valueOf(aC_Indicator_TF[currentplyr].getText());
             FIE_playerHP[currentplyr] = String.valueOf(hPIndicator[currentplyr].getText());
             FIE_playerStr[currentplyr] = playerStats[currentplyr][0][0].getText();
-//            FIE_playerDex[] = playerStats[currentplyr][0][0].getText();
-//            FIE_playerCon[]
+            FIE_playerDex[currentplyr] = playerStats[currentplyr][1][0].getText();
+            FIE_playerCon[currentplyr] = playerStats[currentplyr][2][0].getText();
+            FIE_playerInt[currentplyr] = playerStats[currentplyr][3][0].getText();
+            FIE_playerWis[currentplyr] = playerStats[currentplyr][4][0].getText();
+            FIE_playerCha[currentplyr] = playerStats[currentplyr][5][0].getText();
 
 
         }
