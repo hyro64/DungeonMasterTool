@@ -410,26 +410,21 @@ public class ToolDriver extends Application implements FileMenuInterface{
         String FIE_playerInt[] = new String[playerIndex];
         String FIE_playerWis[] = new String[playerIndex];
         String FIE_playerCha[] = new String[playerIndex];
-        for (int currentplyr = 0; currentplyr < playerIndex ; currentplyr++){
-            FIE_playerNames[currentplyr] = String.valueOf(playerName[currentplyr].getText());
-            FIE_playerLvl[currentplyr] = String.valueOf(playerLevel_CBox[currentplyr].getValue());
-            FIE_playerAC[currentplyr] = String.valueOf(aC_Indicator_TF[currentplyr].getText());
-            FIE_playerHP[currentplyr] = String.valueOf(hPIndicator[currentplyr].getText());
-            FIE_playerStr[currentplyr] = playerStats[currentplyr][0][0].getText();
-            FIE_playerDex[currentplyr] = playerStats[currentplyr][1][0].getText();
-            FIE_playerCon[currentplyr] = playerStats[currentplyr][2][0].getText();
-            FIE_playerInt[currentplyr] = playerStats[currentplyr][3][0].getText();
-            FIE_playerWis[currentplyr] = playerStats[currentplyr][4][0].getText();
-            FIE_playerCha[currentplyr] = playerStats[currentplyr][5][0].getText();
-
-
+        for (int currentplayer = 0; currentplayer < playerIndex ; currentplayer++){
+            FIE_playerNames[currentplayer] = playerName[currentplayer].getText();
+            FIE_playerLvl[currentplayer] = playerLevel_CBox[currentplayer].getValue();
+            FIE_playerAC[currentplayer] = aC_Indicator_TF[currentplayer].getText();
+            FIE_playerHP[currentplayer] = hPIndicator[currentplayer].getText();
+            FIE_playerStr[currentplayer] = playerStats[currentplayer][0][0].getText();
+            FIE_playerDex[currentplayer] = playerStats[currentplayer][1][0].getText();
+            FIE_playerCon[currentplayer] = playerStats[currentplayer][2][0].getText();
+            FIE_playerInt[currentplayer] = playerStats[currentplayer][3][0].getText();
+            FIE_playerWis[currentplayer] = playerStats[currentplayer][4][0].getText();
+            FIE_playerCha[currentplayer] = playerStats[currentplayer][5][0].getText();
         }
         FileImportExport sC = new FileImportExport(playerIndex,FIE_playerNames, FIE_playerLvl, FIE_playerAC,
-                FIE_playerHP, FIE_playerStr);
+                FIE_playerHP, FIE_playerStr, FIE_playerDex, FIE_playerCon, FIE_playerInt,FIE_playerWis, FIE_playerCha);
         sC.createFile("Op1.txt",sC.saveCampaign(FIE_playerNames));
-//        FileImportExport sC = new FileImportExport(playerIndex,FIE_playerNames, FIE_playerLvl, FIE_playerAC,
-//                FIE_playerHP,FIE_playerStr,FIE_playerDex,FIE_playerCon,FIE_playerInt,FIE_playerWis,FIE_playerCha);
-
     }
 //-------------------------------------------END_FILE_METHODS-----------------------------------------------------------
     private void createActions() {
