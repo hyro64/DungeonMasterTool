@@ -405,6 +405,7 @@ public class ToolDriver extends Application implements FileMenuInterface{
         String FIE_playerAC[] = new String[playerIndex];
         String FIE_playerHP[] = new String[playerIndex];
         String FIE_playerStr[] = new String[playerIndex];
+
         String FIE_playerDex[] = new String[playerIndex];
         String FIE_playerCon[] = new String[playerIndex];
         String FIE_playerInt[] = new String[playerIndex];
@@ -415,6 +416,7 @@ public class ToolDriver extends Application implements FileMenuInterface{
             FIE_playerLvl[currentplayer] = playerLevel_CBox[currentplayer].getValue();
             FIE_playerAC[currentplayer] = aC_Indicator_TF[currentplayer].getText();
             FIE_playerHP[currentplayer] = hPIndicator[currentplayer].getText();
+
             FIE_playerStr[currentplayer] = playerStats[currentplayer][0][0].getText();
             FIE_playerDex[currentplayer] = playerStats[currentplayer][1][0].getText();
             FIE_playerCon[currentplayer] = playerStats[currentplayer][2][0].getText();
@@ -422,9 +424,14 @@ public class ToolDriver extends Application implements FileMenuInterface{
             FIE_playerWis[currentplayer] = playerStats[currentplayer][4][0].getText();
             FIE_playerCha[currentplayer] = playerStats[currentplayer][5][0].getText();
         }
+        // Creates the object to save the information
         FileImportExport sC = new FileImportExport(playerIndex,FIE_playerNames, FIE_playerLvl, FIE_playerAC,
                 FIE_playerHP, FIE_playerStr, FIE_playerDex, FIE_playerCon, FIE_playerInt,FIE_playerWis, FIE_playerCha);
-        sC.createFile("Op1.txt",sC.saveCampaign(FIE_playerNames));
+        //Calls the method to create the file through FileImportExport.
+        sC.createFile("Op1.txt",sC.saveCampaign());
+    }
+    private void loadCampaign() {
+
     }
 //-------------------------------------------END_FILE_METHODS-----------------------------------------------------------
     private void createActions() {
@@ -437,6 +444,7 @@ public class ToolDriver extends Application implements FileMenuInterface{
         // Call to start new Scene
         tD_Button[2].setOnAction(e -> MainWindow.setScene(mnGen.monGenStart(MainWindow,layoutMain,scene_Main)));
         tD_Button[3].setOnAction(e -> reset());
+        newCamp.setOnAction(e-> reset());
         saveCamp.setOnAction(e -> saveCampaign());
 
     }

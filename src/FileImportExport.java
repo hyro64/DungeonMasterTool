@@ -5,7 +5,6 @@ import java.io.IOException;
 
 public class FileImportExport {
     int playerSize;
-    String fileName = "Op1.txt";
     String playerNames[];
     String playerLvl [];
     String playerAc [];
@@ -34,31 +33,9 @@ public class FileImportExport {
 
     }
 
-    public String saveCampaign(String playerNames[]) {
-
+    public String saveCampaign() {
         String content = "";
         for (int i = 0; i < playerSize; i++) {
-            content += "\n" +
-                    "PlayerIndex:" + i +"\n"+
-                    "Name:"+ playerNames[i] + "\n"+
-                    "Player Level:"+ playerLvl[i] +"\n"+
-                    "Player Amour:" + playerAc[i] + "\n"+
-                    "Player HP:" + playerHp[i] + "\n"+
-                    "Strength:" + playerStr[i]+ "\n" +
-                    "Dexterity:"+ playerDex[i]+"\n"+
-                    "Constitution:"+playerCon[i]+"\n"+
-                    "Intelligence:"+playerInt[i]+"\n"+
-                    "Wisdom:"+playerWis[i]+"\n"+
-                    "Charisma:"+playerCha[i] +"\n";
-        }
-        return content;
-    }
-
-    public String saveCampaign( int playerSaveSize[], String playerNames[], String playerLvl[], String playerAc[],
-                                      String playerHp[], String playerStr[], String playerDex[], String playerCon[],
-                                      String playerInt[], String playerWis[], String playerCha[]) {
-        String content = "";
-        for (int i = 0; i <= playerSaveSize.length; i++) {
             content += "\n" +
                     "PlayerIndex:" + i +"\n"+
                     "Name:"+ playerNames[i] + "\n"+
