@@ -35,22 +35,24 @@ public class ToolDriver extends Application implements FileMenuInterface{
     private BorderPane centerW_A_BP[] = new BorderPane[maxPlayer];          // CenterArea working
 
     private HBox playerStats_c_L_AreaHB = new HBox(5);
-    private HBox playerStatsHBox[][] = new HBox[maxPlayer][6];
+    private HBox playerStatsOuterHBox[][] = new HBox[maxPlayer][6];
     private HBox playerAdd_Center_Area_HB = new HBox(10);
     private HBox playerIndLayout[] = new HBox[maxPlayer];
     private HBox playerSub[] = new HBox[maxPlayer];
     private HBox playerAddSub_HB[][]= new HBox[maxPlayer][2];
     private HBox playHp_Label_HBox[][] = new HBox[maxPlayer][2];
+    private HBox playerStats_LblTFSep_HBox[][][] = new HBox[maxPlayer][6][4];
 
     private VBox playerADD_CR_AreaVB = new VBox(10);
     private VBox player_Marker[] = new VBox[maxPlayer];
     private VBox playerStats_Outer_VBox[] = new VBox[maxPlayer];
+    private VBox playerStats_Lbl_TF_VBox[][][] = new VBox[maxPlayer][6][2];
     private VBox player_Hp_label_VBox[] = new VBox[maxPlayer];
 
     private TextField aC_Indicator_TF[] = new TextField[maxPlayer];
     private TextField hPIndicator[] = new TextField[maxPlayer];
-    private TextField playerName[] = new TextField[maxPlayer];
-    private TextField playerStats[][][] = new TextField[maxPlayer][6][2];
+    private TextField playerName_TF[] = new TextField[maxPlayer];
+    private TextField playerStats_TF[][][] = new TextField[maxPlayer][6][2];
 
     private Label Ac_Label[] = new Label[maxPlayer];
     private Label playerLvlSelection[] = new Label[maxPlayer];
@@ -123,7 +125,7 @@ public class ToolDriver extends Application implements FileMenuInterface{
         playerIndLayout[inPlayerIndex] = new HBox();
         playerIndLayout[inPlayerIndex].setAlignment(Pos.CENTER_LEFT);
         playerIndLayout[inPlayerIndex].getChildren().addAll(
-                init_playerName_Tf(playerName,inPlayerIndex, uniColumns),
+                init_playerName_Tf(playerName_TF,inPlayerIndex, uniColumns),
                 init_hp_Tf(hPIndicator,inPlayerIndex, uniColumns,"add Hp")
         );
         // Create an HBox's for the + and - health buttons
@@ -162,9 +164,12 @@ public class ToolDriver extends Application implements FileMenuInterface{
         centerW_A_BP[inPlayerIndex].setLeft(player_Marker[inPlayerIndex]);
         centerW_A_BP[inPlayerIndex].setBottom(playerSub[inPlayerIndex]);
         centerW_A_BP[inPlayerIndex].setRight(
-                //Todo add a Vbox to the call
-                init_PlayerStats(playerStats_Outer_VBox, playerStatsHBox, playerStatLabel,
-                playerStats, inPlayerIndex));
+                init_PlayerStats(inPlayerIndex,
+                        playerStats_Outer_VBox,
+                        playerStatsOuterHBox, playerStats_Lbl_TF_VBox,
+                        playerStats_LblTFSep_HBox,
+                        playerStatLabel, playerStats_TF
+                        ));
 
         return centerW_A_BP[inPlayerIndex];
     }
@@ -263,119 +268,103 @@ public class ToolDriver extends Application implements FileMenuInterface{
 
         return player_Hp_label_VBox[inPlayerIndex];
     }
-    private VBox init_PlayerStats(VBox playerStatsVBox[], HBox playerStats_Lbl_HBox[][],
-                                  Label inPlayerStatLabel[][][], TextField inPlayerStatTF[][][], int inPlayerIndex) {
-        // Creates the VBox that holds the Player stats
-        playerStatsVBox[inPlayerIndex] = new VBox(3);
+    private VBox init_PlayerStats(int inPlayerIndex,
+                                  VBox inPlayerStatsVBox[],
+                                  HBox inPlayerStats_Outer_HBox[][],
+                                  VBox playerStats_LblTF_VBox[][][],
+                                  HBox playerStats_LblTFSep_HBox[][][],
+                                  Label inPlayerStatLabel[][][],
+                                  TextField inPlayerStatTF[][][]
+                                  ) {
         /***************************************************************************************************************
-         * Creates an VBox that holds the 1 label and one TextField
-         * That
+         * Player Index goes from 1-6 or whatever the "MaxPlayer" is.
+         * inPlayerStatsVBox holds all the inPlayerStats_Outer_HBox.
+         * Those HBoxes hold 2 VBoxes
+         * Those VBoxes holds 2 HBoxes each
+         * Those HBoxes holds the labels and textFields
          * ************************************************************************************************************/
-        // TODO add the labels to individual VBoxes that hold the 1 label and one text Field
+        // Creates the VBox that holds the Player stats
+        inPlayerStatsVBox[inPlayerIndex] = new VBox(3);     // Outer VBox that holds everything
+
+        inPlayerStats_Outer_HBox[inPlayerIndex][0] = new HBox();    // Strength Hbox
+        inPlayerStats_Outer_HBox[inPlayerIndex][1] = new HBox();    // Dexterity Box
+        inPlayerStats_Outer_HBox[inPlayerIndex][2] = new HBox();    // Constitution Box
+        inPlayerStats_Outer_HBox[inPlayerIndex][3] = new HBox();    // Intelligence Box
+        inPlayerStats_Outer_HBox[inPlayerIndex][4] = new HBox();    // Wisdom box
+        inPlayerStats_Outer_HBox[inPlayerIndex][5] = new HBox();    // Charisma box
         //------------------------------------Strength_Score_&_MOD------------------------------------------------------
-        playerStats_Lbl_HBox[0][0] = new HBox();
-        inPlayerStatLabel[inPlayerIndex][0][0]= new Label("Strength");
-        inPlayerStatLabel[inPlayerIndex][0][1] =new Label("Mod");
-        playerStats_Lbl_HBox[0][0].getChildren().addAll(
-                inPlayerStatLabel[inPlayerIndex][0][0],
-                inPlayerStatLabel[inPlayerIndex][0][1]);
+        playerStats_LblTF_VBox[inPlayerIndex][0][0] = new VBox();   // Holds Label and Textfield
+        playerStats_LblTF_VBox[inPlayerIndex][0][1] = new VBox();   // Holds Label and Modifier
 
-        playerStats_Lbl_HBox[0][1] = new HBox();
+        playerStats_LblTFSep_HBox[inPlayerIndex][0][0] = new HBox();    // Holds strength label
+        playerStats_LblTFSep_HBox[inPlayerIndex][0][1] = new HBox();    // Holds Strength textField
+        playerStats_LblTFSep_HBox[inPlayerIndex][0][2] = new HBox();    // Holds Strength mod Lable
+        playerStats_LblTFSep_HBox[inPlayerIndex][0][3] = new HBox();    // Holds Strength mod result
+
+        inPlayerStatLabel[inPlayerIndex][0][0]= new Label("Strength:");
+        playerStats_LblTFSep_HBox[inPlayerIndex][0][0].getChildren().addAll(
+                inPlayerStatLabel[inPlayerIndex][0][0]);
         inPlayerStatTF[inPlayerIndex][0][0] = new TextField();
-        inPlayerStatTF[inPlayerIndex][0][1] = new TextField();
         inPlayerStatTF[inPlayerIndex][0][0].setPromptText("Str");
-        playerStats_Lbl_HBox[0][1].getChildren().addAll(
-                inPlayerStatTF[inPlayerIndex][0][0],
-                inPlayerStatTF[inPlayerIndex][0][1]
+        inPlayerStatTF[inPlayerIndex][0][0].setPrefColumnCount(5);
+        playerStats_LblTFSep_HBox[inPlayerIndex][0][1].getChildren().addAll(
+                inPlayerStatTF[inPlayerIndex][0][0]);
+
+        inPlayerStatLabel[inPlayerIndex][0][1] = new Label("Modifier:");
+        playerStats_LblTFSep_HBox[inPlayerIndex][0][2].getChildren().addAll(
+                inPlayerStatLabel[inPlayerIndex][0][1]);
+        playerStats_LblTF_VBox[inPlayerIndex][0][0].getChildren().addAll(
+                playerStats_LblTFSep_HBox[inPlayerIndex][0][0],
+                playerStats_LblTFSep_HBox[inPlayerIndex][0][1]
         );
 
-        //--------------------------------------------------------------------------------------------------------------
-        playerStats_Lbl_HBox[1][0] = new HBox();
-        inPlayerStatLabel[inPlayerIndex][1][0] = new Label("Dexterity");
-        inPlayerStatLabel[inPlayerIndex][1][1] = new Label("Mod");
-        playerStats_Lbl_HBox[1][0].getChildren().addAll(
-                inPlayerStatLabel[inPlayerIndex][1][0],
-                inPlayerStatLabel[inPlayerIndex][1][1]);
-        playerStats_Lbl_HBox[1][1] = new HBox();
+        playerStats_LblTF_VBox[inPlayerIndex][0][1].getChildren().addAll(
+                playerStats_LblTFSep_HBox[inPlayerIndex][0][2],
+                playerStats_LblTFSep_HBox[inPlayerIndex][0][3]);
+        inPlayerStats_Outer_HBox[inPlayerIndex][0].getChildren().addAll(
+                playerStats_LblTF_VBox[inPlayerIndex][0][0],
+                playerStats_LblTF_VBox[inPlayerIndex][0][1]);
+        //------------------------------------Dexterity_Score_&_MOD-----------------------------------------------------
+        playerStats_LblTF_VBox[inPlayerIndex][1][0] = new VBox();   // Holds Label and Textfield
+        playerStats_LblTF_VBox[inPlayerIndex][1][1] = new VBox();   // Holds Label and Modifier
+
+        playerStats_LblTFSep_HBox[inPlayerIndex][1][0] = new HBox();    // Holds strength label
+        playerStats_LblTFSep_HBox[inPlayerIndex][1][1] = new HBox();    // Holds Strength textField
+        playerStats_LblTFSep_HBox[inPlayerIndex][1][2] = new HBox();    // Holds Strength mod Lable
+        playerStats_LblTFSep_HBox[inPlayerIndex][1][3] = new HBox();    // Holds Strength mod result
+
+        inPlayerStatLabel[inPlayerIndex][1][0]= new Label("Dexterity:");
+        playerStats_LblTFSep_HBox[inPlayerIndex][1][0].getChildren().addAll(
+                inPlayerStatLabel[inPlayerIndex][1][0]);
         inPlayerStatTF[inPlayerIndex][1][0] = new TextField();
-        inPlayerStatTF[inPlayerIndex][1][1] = new TextField();
-        inPlayerStatTF[inPlayerIndex][1][0].setPromptText("Dex");
-        playerStats_Lbl_HBox[1][1].getChildren().addAll(
-                inPlayerStatTF[inPlayerIndex][1][0],
-                inPlayerStatTF[inPlayerIndex][1][1]
+        inPlayerStatTF[inPlayerIndex][1][0].setPromptText("Str");
+        inPlayerStatTF[inPlayerIndex][1][0].setPrefColumnCount(5);
+        playerStats_LblTFSep_HBox[inPlayerIndex][1][1].getChildren().addAll(
+                inPlayerStatTF[inPlayerIndex][1][0]);
+
+        inPlayerStatLabel[inPlayerIndex][1][1] = new Label("Modifier:");
+        playerStats_LblTFSep_HBox[inPlayerIndex][1][2].getChildren().addAll(
+                inPlayerStatLabel[inPlayerIndex][1][1]);
+        playerStats_LblTF_VBox[inPlayerIndex][1][0].getChildren().addAll(
+                playerStats_LblTFSep_HBox[inPlayerIndex][1][0],
+                playerStats_LblTFSep_HBox[inPlayerIndex][1][1]
         );
 
-        playerStats_Lbl_HBox[2][0] = new HBox();
-        inPlayerStatLabel[inPlayerIndex][2][0] = new Label("Constitution");
-        inPlayerStatLabel[inPlayerIndex][2][1] = new Label("Mod");
-        playerStats_Lbl_HBox[2][0].getChildren().addAll(
-                inPlayerStatLabel[inPlayerIndex][2][0],
-                inPlayerStatLabel[inPlayerIndex][2][1]);
-        playerStats_Lbl_HBox[2][1] = new HBox();
-        inPlayerStatTF[inPlayerIndex][2][0] = new TextField();
-        inPlayerStatTF[inPlayerIndex][2][1] = new TextField();
-        inPlayerStatTF[inPlayerIndex][2][0].setPromptText("Con");
-        playerStats_Lbl_HBox[2][1].getChildren().addAll(
-                inPlayerStatTF[inPlayerIndex][2][0],
-                inPlayerStatTF[inPlayerIndex][2][1]
-        );
+        playerStats_LblTF_VBox[inPlayerIndex][1][1].getChildren().addAll(
+                playerStats_LblTFSep_HBox[inPlayerIndex][1][2],
+                playerStats_LblTFSep_HBox[inPlayerIndex][1][3]);
 
-        playerStats_Lbl_HBox[3][0] = new HBox();
-        inPlayerStatLabel[inPlayerIndex][3][0] = new Label("Intelligence");
-        inPlayerStatLabel[inPlayerIndex][3][1] = new Label("Mod");
-        playerStats_Lbl_HBox[3][0].getChildren().addAll(
-                inPlayerStatLabel[inPlayerIndex][3][0],
-                inPlayerStatLabel[inPlayerIndex][3][1]);
-        playerStats_Lbl_HBox[3][1] = new HBox();
-        inPlayerStatTF[inPlayerIndex][3][0] = new TextField();
-        inPlayerStatTF[inPlayerIndex][3][1] = new TextField();
-        inPlayerStatTF[inPlayerIndex][3][0].setPromptText("Int");
-        playerStats_Lbl_HBox[3][1].getChildren().addAll(
-                inPlayerStatTF[inPlayerIndex][3][0],
-                inPlayerStatTF[inPlayerIndex][3][1]
-        );
+        inPlayerStats_Outer_HBox[inPlayerIndex][1].getChildren().addAll(
+                playerStats_LblTF_VBox[inPlayerIndex][1][0],
+                playerStats_LblTF_VBox[inPlayerIndex][1][1]);
 
-        playerStats_Lbl_HBox[4][0] = new HBox();
-        inPlayerStatLabel[inPlayerIndex][4][0] = new Label("Wisdom");
-        inPlayerStatLabel[inPlayerIndex][4][1] = new Label("Mod");
-        playerStats_Lbl_HBox[4][0].getChildren().addAll(
-                inPlayerStatLabel[inPlayerIndex][4][0],
-                inPlayerStatLabel[inPlayerIndex][4][1]);
-        playerStats_Lbl_HBox[4][1] = new HBox();
-        inPlayerStatTF[inPlayerIndex][4][0] = new TextField();
-        inPlayerStatTF[inPlayerIndex][4][1] = new TextField();
-        inPlayerStatTF[inPlayerIndex][4][0].setPromptText("Wis");
-        playerStats_Lbl_HBox[4][1].getChildren().addAll(
-                inPlayerStatTF[inPlayerIndex][4][0],
-                inPlayerStatTF[inPlayerIndex][4][1]
+    //--------------------------------Add_to_MainVBox-------------------------------------------------------------------
+        inPlayerStatsVBox[inPlayerIndex].setAlignment(Pos.CENTER_LEFT);
+        inPlayerStatsVBox[inPlayerIndex].getChildren().addAll(
+                inPlayerStats_Outer_HBox[inPlayerIndex][0],
+                inPlayerStats_Outer_HBox[inPlayerIndex][1]
         );
-
-        playerStats_Lbl_HBox[5][0] = new HBox();
-        inPlayerStatLabel[inPlayerIndex][5][0] = new Label("Charisma");
-        inPlayerStatLabel[inPlayerIndex][5][1] = new Label("Mod");
-        playerStats_Lbl_HBox[5][0].getChildren().addAll(
-                inPlayerStatLabel[inPlayerIndex][5][0],
-                inPlayerStatLabel[inPlayerIndex][5][1]);
-        playerStats_Lbl_HBox[5][1] = new HBox();
-        inPlayerStatTF[inPlayerIndex][5][0] = new TextField();
-        inPlayerStatTF[inPlayerIndex][5][1] = new TextField();
-        inPlayerStatTF[inPlayerIndex][5][0].setPromptText("Cha");
-        playerStats_Lbl_HBox[5][1].getChildren().addAll(
-                inPlayerStatTF[inPlayerIndex][5][0],
-                inPlayerStatTF[inPlayerIndex][5][1]
-        );
-        playerStatsVBox[inPlayerIndex].setAlignment(Pos.CENTER_LEFT);
-        playerStatsVBox[inPlayerIndex].getChildren().addAll(
-                playerStats_Lbl_HBox[0][0], playerStats_Lbl_HBox[0][1],
-                playerStats_Lbl_HBox[1][0], playerStats_Lbl_HBox[1][1],
-                playerStats_Lbl_HBox[2][0], playerStats_Lbl_HBox[2][1],
-                playerStats_Lbl_HBox[3][0], playerStats_Lbl_HBox[3][1],
-                playerStats_Lbl_HBox[4][0], playerStats_Lbl_HBox[4][1],
-                playerStats_Lbl_HBox[5][0], playerStats_Lbl_HBox[5][1]
-
-        );
-
-        return playerStatsVBox[inPlayerIndex];
+        return inPlayerStatsVBox[inPlayerIndex];
     }
     private TextField init_playerName_Tf(TextField in_TF_Array[], int playerIndex, int columns){
         // creates a text field array to keep the track of elements (Done)
@@ -429,17 +418,17 @@ public class ToolDriver extends Application implements FileMenuInterface{
         String FIE_playerWis[] = new String[playerIndex];
         String FIE_playerCha[] = new String[playerIndex];
         for (int currentplayer = 0; currentplayer < playerIndex ; currentplayer++){
-            FIE_playerNames[currentplayer] = playerName[currentplayer].getText();
+            FIE_playerNames[currentplayer] = playerName_TF[currentplayer].getText();
             FIE_playerLvl[currentplayer] = playerLevel_CBox[currentplayer].getValue();
             FIE_playerAC[currentplayer] = aC_Indicator_TF[currentplayer].getText();
             FIE_playerHP[currentplayer] = hPIndicator[currentplayer].getText();
 
-            FIE_playerStr[currentplayer] = playerStats[currentplayer][0][0].getText();
-            FIE_playerDex[currentplayer] = playerStats[currentplayer][1][0].getText();
-            FIE_playerCon[currentplayer] = playerStats[currentplayer][2][0].getText();
-            FIE_playerInt[currentplayer] = playerStats[currentplayer][3][0].getText();
-            FIE_playerWis[currentplayer] = playerStats[currentplayer][4][0].getText();
-            FIE_playerCha[currentplayer] = playerStats[currentplayer][5][0].getText();
+            FIE_playerStr[currentplayer] = playerStats_TF[currentplayer][0][0].getText();
+            FIE_playerDex[currentplayer] = playerStats_TF[currentplayer][1][0].getText();
+            FIE_playerCon[currentplayer] = playerStats_TF[currentplayer][2][0].getText();
+            FIE_playerInt[currentplayer] = playerStats_TF[currentplayer][3][0].getText();
+            FIE_playerWis[currentplayer] = playerStats_TF[currentplayer][4][0].getText();
+            FIE_playerCha[currentplayer] = playerStats_TF[currentplayer][5][0].getText();
         }
         // Creates the object to save the information
         FileExport sC = new FileExport(playerIndex,FIE_playerNames, FIE_playerLvl, FIE_playerAC,
@@ -488,6 +477,7 @@ public class ToolDriver extends Application implements FileMenuInterface{
          * ************************************************************************************************************/
         // td_button[0] adds the action for add button
         tD_Button[0].setOnAction(e -> createPlayerMarker(MainWindow, playerStats_c_L_AreaHB));
+        // td_button[1]
         tD_Button[1].setOnAction(e -> createPlayerMarker(MainWindow, playerStats_c_L_AreaHB));
         // Call to start new Scene
         tD_Button[2].setOnAction(e -> MainWindow.setScene(mnGen.monGenStart(MainWindow,layoutMain,scene_Main)));
