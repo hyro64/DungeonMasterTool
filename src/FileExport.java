@@ -3,7 +3,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 
-public class FileImportExport {
+public class FileExport {
     int playerSize;
     String playerNames[];
     String playerLvl [];
@@ -16,9 +16,9 @@ public class FileImportExport {
     String playerWis [];
     String playerCha [];
 
-    FileImportExport(int tDPlayerSize, String tD_names[], String tD_playerLvl[], String tD_PlayerAC[],
-                     String tD_PlayerHP[], String tD_PlayerStr[], String tD_PlayerDex[], String tD_PlayerCon[],
-                     String tD_PlayerInt[], String tD_PlayerWis[], String tD_PlayerCha[]){
+    FileExport(int tDPlayerSize, String tD_names[], String tD_playerLvl[], String tD_PlayerAC[],
+               String tD_PlayerHP[], String tD_PlayerStr[], String tD_PlayerDex[], String tD_PlayerCon[],
+               String tD_PlayerInt[], String tD_PlayerWis[], String tD_PlayerCha[]){
         playerSize = tDPlayerSize;
         playerNames = tD_names;
         playerLvl = tD_playerLvl;
@@ -39,9 +39,9 @@ public class FileImportExport {
             content += "\n" +
                     "PlayerIndex:" + i +":\n"+
                     "Name:"+ playerNames[i] + ":\n"+
-                    "Player Lvl: " + playerLvl[i] +":\n" +
+                    "Player Lvl:" + playerLvl[i] +":\n" +
                     "Amour Class:" + playerAc[i] + ":\n" +
-                    "Hit:points" + playerHp[i] + ":\n" +
+                    "Hit points:" + playerHp[i] + ":\n" +
                     "Strength:" + playerStr[i] + ":\n" +
                     "Dexterity:" + playerDex[i] + ":\n" +
                     "Constitution:" + playerCon[i] + ":\n" +
