@@ -9,8 +9,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
+import java.nio.file.*;
+import java.util.Scanner;
 
 
 public class ToolDriver extends Application implements FileMenuInterface{
@@ -25,9 +35,9 @@ public class ToolDriver extends Application implements FileMenuInterface{
     private Stage MainWindow;
     private Scene scene_Main;
     // Layout for the main_class------------------------------------------------------------------------------------
-    private BorderPane layoutMain = new BorderPane();
-    private BorderPane centerWork = new BorderPane();
-    private BorderPane centerW_A_BP[] = new BorderPane[maxPlayer];
+    private BorderPane layoutMain = new BorderPane();                       // Outerpane for main window
+    private BorderPane centerWork = new BorderPane();                       // CenterPane that holds the players
+    private BorderPane centerW_A_BP[] = new BorderPane[maxPlayer];          // CenterArea working
 
     private HBox playerStats_c_L_AreaHB = new HBox(5);
     private HBox playerStatsLabelHBox[][] = new HBox[maxPlayer][2];
@@ -39,7 +49,7 @@ public class ToolDriver extends Application implements FileMenuInterface{
 
     private VBox playerADD_CR_AreaVB = new VBox(10);
     private VBox player_Marker[] = new VBox[maxPlayer];
-    private VBox plyrStatsVBox[] = new VBox[maxPlayer];
+    private VBox playerStatsVBox[] = new VBox[maxPlayer];
     private VBox player_Hp_label_VBox[] = new VBox[maxPlayer];
 
     private TextField aC_Indicator_TF[] = new TextField[maxPlayer];
@@ -48,8 +58,8 @@ public class ToolDriver extends Application implements FileMenuInterface{
     private TextField playerStats[][][] = new TextField[maxPlayer][6][2];
 
     private Label Ac_Label[] = new Label[maxPlayer];
-    private Label plyrLvlSelection[] = new Label[maxPlayer];
-    private Label plyrStatLabel[][][] = new Label[maxPlayer][6][2];
+    private Label playerLvlSelection[] = new Label[maxPlayer];
+    private Label playerStatLabel[][][] = new Label[maxPlayer][6][2];
 
     private Slider pSlider[] = new Slider[maxPlayer];
 
@@ -145,7 +155,7 @@ public class ToolDriver extends Application implements FileMenuInterface{
         playerSub[inPlayerIndex] = new HBox(5);
         playerSub[inPlayerIndex].setAlignment(Pos.CENTER_LEFT);
         playerSub[inPlayerIndex].getChildren().addAll(
-                uni_makeLabel(plyrLvlSelection,inPlayerIndex,"Current Lvl."),
+                uni_makeLabel(playerLvlSelection,inPlayerIndex,"Current Lvl."),
                 createBot_CBox(
                     playerLevel_CBox,
                     inPlayerIndex),
@@ -157,7 +167,7 @@ public class ToolDriver extends Application implements FileMenuInterface{
         centerW_A_BP[inPlayerIndex].setLeft(player_Marker[inPlayerIndex]);
         centerW_A_BP[inPlayerIndex].setBottom(playerSub[inPlayerIndex]);
         centerW_A_BP[inPlayerIndex].setRight(
-                init_PlayerStats(plyrStatsVBox, playerStatsLabelHBox, plyrStatLabel,
+                init_PlayerStats(playerStatsVBox, playerStatsLabelHBox, playerStatLabel,
                 playerStats, inPlayerIndex));
 
         return centerW_A_BP[inPlayerIndex];
@@ -432,6 +442,37 @@ public class ToolDriver extends Application implements FileMenuInterface{
     }
     private void loadCampaign() {
 
+        //TODO add file option chooser to file channel
+        try{FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Open Resource File");
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("Text Files", "*.txt"));
+            File x1 = fileChooser.showOpenDialog(MainWindow);
+            FileReader x2 = new FileReader(x1);
+            BufferedReader reader = new BufferedReader(x2);
+
+            String key = "";
+            String line = reader.readLine();
+
+            while(line != null){
+                key += line;
+                line = reader.readLine();
+            }
+
+            String [] strings = key.split(":");
+            int playIndex = Integer.parseInt(strings[1]);
+//            playIndex = playIndex.substring(0,1);
+            System.out.print(playIndex);
+
+//            if (x1.exists())
+//                System.out.println(x1.getName() + " exists");
+//            else
+//                System.out.println("File not found");
+            }
+        catch (Exception e){
+            e.getMessage();
+            e.getClass();
+        }
     }
 //-------------------------------------------END_FILE_METHODS-----------------------------------------------------------
     private void createActions() {
@@ -445,8 +486,8 @@ public class ToolDriver extends Application implements FileMenuInterface{
         tD_Button[2].setOnAction(e -> MainWindow.setScene(mnGen.monGenStart(MainWindow,layoutMain,scene_Main)));
         tD_Button[3].setOnAction(e -> reset());
         newCamp.setOnAction(e-> reset());
+        openCamp.setOnAction(e-> loadCampaign());
         saveCamp.setOnAction(e -> saveCampaign());
-
     }
     private void createPlayerMarker(Stage inMainWindow, HBox inCenterAreaHB) {
         // Adds player indicators to the Main window
@@ -484,6 +525,7 @@ public class ToolDriver extends Application implements FileMenuInterface{
     }
     // Must warn the player about reset<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     public void reset(){
+        // TODO Fix the issue of file not allowing the area to re-acquired for players
         centerWork.setCenter(null);
         playerIndex = 0;
     }

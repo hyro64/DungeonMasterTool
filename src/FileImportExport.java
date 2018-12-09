@@ -37,17 +37,17 @@ public class FileImportExport {
         String content = "";
         for (int i = 0; i < playerSize; i++) {
             content += "\n" +
-                    "PlayerIndex:" + i +"\n"+
-                    "Name:"+ playerNames[i] + "\n"+
-                    "Player Lvl: " + playerLvl[i] +"\n" +
-                    "Amour Class:" + playerAc[i] + "\n" +
-                    "Hit:points" + playerHp[i] + "\n" +
-                    "Strength:" + playerStr[i] + "\n" +
-                    "Dexterity:" + playerDex[i] + "\n" +
-                    "Constitution:" + playerCon[i] + "\n" +
-                    "Intelligence:" + playerInt[i] + "\n" +
-                    "Wisdom:" + playerWis[i] + "\n" +
-                    "Charisma:" + playerCha[i] + "\n";
+                    "PlayerIndex:" + i +":\n"+
+                    "Name:"+ playerNames[i] + ":\n"+
+                    "Player Lvl: " + playerLvl[i] +":\n" +
+                    "Amour Class:" + playerAc[i] + ":\n" +
+                    "Hit:points" + playerHp[i] + ":\n" +
+                    "Strength:" + playerStr[i] + ":\n" +
+                    "Dexterity:" + playerDex[i] + ":\n" +
+                    "Constitution:" + playerCon[i] + ":\n" +
+                    "Intelligence:" + playerInt[i] + ":\n" +
+                    "Wisdom:" + playerWis[i] + ":\n" +
+                    "Charisma:" + playerCha[i] + ":\n";
         }
         return content;
     }
@@ -72,4 +72,6 @@ public class FileImportExport {
             }
         }
     }
+
+
 }
