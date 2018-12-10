@@ -55,7 +55,7 @@ public class ToolDriver extends Application implements FileMenuInterface{
 
     private Label Ac_Label[] = new Label[maxPlayer];
     private Label playerLvlSelection[] = new Label[maxPlayer];
-    private Label playerStatLabel[][][] = new Label[maxPlayer][6][2];
+    private Label playerStatLabel[][][] = new Label[maxPlayer][6][3];               // Uses player, stats,
 
     private Slider pSlider[] = new Slider[maxPlayer];
 
@@ -218,11 +218,72 @@ public class ToolDriver extends Application implements FileMenuInterface{
         inLabel[inPlayerIndex] = new Label(inText);
         return inLabel[inPlayerIndex];
     }
-    //Todo
-    private Label ModifierLabel(Label inLabel[],int inPlayerIndex,){
-
-        inLabel[inPlayerIndex] = new Label();
-        return inLabel[inPlayerIndex];
+    private Label ModifierLabel(Label inLabel[],int inPlayerIndex, int i){
+        int mod = Integer.parseInt(playerStats_TF[inPlayerIndex][i].getText());
+        if (mod >= 1){
+            inLabel[inPlayerIndex] = new Label("-5");
+            return inLabel[inPlayerIndex];
+        }
+        else if(mod == 2 || mod == 3){
+            inLabel[inPlayerIndex] = new Label("-4");
+            return inLabel[inPlayerIndex];
+        }
+        else if(mod == 4 || mod == 5){
+            inLabel[inPlayerIndex] = new Label("-3");
+            return inLabel[inPlayerIndex];
+        }
+        else if(mod == 6 || mod == 7){
+            inLabel[inPlayerIndex] = new Label("-2");
+            return inLabel[inPlayerIndex];
+        }
+        else if(mod == 8 || mod == 9){
+            inLabel[inPlayerIndex] = new Label("-1");
+            return inLabel[inPlayerIndex];
+        }
+        else if(mod == 10 || mod == 11){
+            inLabel[inPlayerIndex] = new Label("+0");
+            return inLabel[inPlayerIndex];
+        }
+        else if(mod == 12 || mod == 13){
+            inLabel[inPlayerIndex] = new Label("+1");
+            return inLabel[inPlayerIndex];
+        }
+        else if(mod == 14 || mod == 15){
+            inLabel[inPlayerIndex] = new Label("+2");
+            return inLabel[inPlayerIndex];
+        }
+        else if(mod == 16 || mod == 17){
+            inLabel[inPlayerIndex] = new Label("+3");
+            return inLabel[inPlayerIndex];
+        }
+        else if(mod == 18 || mod == 19){
+            inLabel[inPlayerIndex] = new Label("+4");
+            return inLabel[inPlayerIndex];
+        }
+        else if(mod == 20 || mod == 21){
+            inLabel[inPlayerIndex] = new Label("+5");
+            return inLabel[inPlayerIndex];
+        }
+        else if(mod == 22 || mod == 23){
+            inLabel[inPlayerIndex] = new Label("+6");
+            return inLabel[inPlayerIndex];
+        }
+        else if(mod == 24 || mod == 25){
+            inLabel[inPlayerIndex] = new Label("+7");
+            return inLabel[inPlayerIndex];
+        }
+        else if(mod == 26 || mod == 27){
+            inLabel[inPlayerIndex] = new Label("+8");
+            return inLabel[inPlayerIndex];
+        }
+        else if(mod == 28 || mod == 29){
+            inLabel[inPlayerIndex] = new Label("+9");
+            return inLabel[inPlayerIndex];
+        }
+        else {
+            inLabel[inPlayerIndex] = new Label("+9");
+            return inLabel[inPlayerIndex];
+        }
     }
     private TextField uni_create_TF(TextField inTextField[], int inPlayerIndex) {
         /***************************************************************************************************************
@@ -244,23 +305,26 @@ public class ToolDriver extends Application implements FileMenuInterface{
         playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][2] = new HBox();    // Holds statsLabel mod Label
         playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][3] = new HBox();    // Holds statsLabel mod result
 
-        inPlayerStatLabel[inPlayerIndex][statsIndicator][0]= new Label(statsLabel);
+        inPlayerStatLabel[inPlayerIndex][statsIndicator][0]= new Label(statsLabel);             // Creates label for the ability
         playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][0].getChildren().addAll(
                 inPlayerStatLabel[inPlayerIndex][statsIndicator][0]);
-        inPlayerStatsTF[inPlayerIndex][statsIndicator] = new TextField();
+
+        inPlayerStatsTF[inPlayerIndex][statsIndicator] = new TextField();                       // Create textfield for ability
         inPlayerStatsTF[inPlayerIndex][statsIndicator].setPromptText(statsLabel.substring(0,3));
         inPlayerStatsTF[inPlayerIndex][statsIndicator].setPrefColumnCount(5);
         playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][1].getChildren().addAll(
                 inPlayerStatsTF[inPlayerIndex][statsIndicator]);
 
-        inPlayerStatLabel[inPlayerIndex][statsIndicator][1] = new Label("Modifier:");
+        inPlayerStatLabel[inPlayerIndex][statsIndicator][1] = new Label("Modifier:");   //Create the label for Modifier
         playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][2].getChildren().addAll(
                 inPlayerStatLabel[inPlayerIndex][statsIndicator][1]);
+
+        inPlayerStatLabel[inPlayerIndex][statsIndicator][2] = ModifierLabel();
+
         playerStats_LblTF_VBox[inPlayerIndex][statsIndicator][0].getChildren().addAll(
                 playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][0],
                 playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][1]
         );
-
         playerStats_LblTF_VBox[inPlayerIndex][statsIndicator][1].getChildren().addAll(
                 playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][2],
                 playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][3]);
@@ -268,7 +332,8 @@ public class ToolDriver extends Application implements FileMenuInterface{
         inPlayerStats_Outer_HBox[inPlayerIndex][statsIndicator].getChildren().addAll(
                 playerStats_LblTF_VBox[inPlayerIndex][statsIndicator][0],
                 playerStats_LblTF_VBox[inPlayerIndex][statsIndicator][1]);
-        return inPlayerStats_Outer_HBox[inPlayerIndex][statsIndicator];
+
+        return inPlayerStats_Outer_HBox[inPlayerIndex][statsIndicator]; //Returns and HBox to the VBox Sections
     }
     //-----------------------------------END_Universal_Methods----------------------------------------------------------
     private Button makeSliderButton(Button inPlusMinusButton[][],int playerIndex, String addSub) {
@@ -564,6 +629,7 @@ public class ToolDriver extends Application implements FileMenuInterface{
             aC_Indicator_TF[i].setText(playerLoadArray[i][3]);      //Set Armour
             hPIndicator[i].setText(playerLoadArray[i][4]);          //Set HP
             playerStats_TF[i][0].setText(playerLoadArray[i][5]);    //Set Strength
+            ModifierLabel();
             playerStats_TF[i][1].setText(playerLoadArray[i][6]);    //Set Dexterity
             playerStats_TF[i][2].setText(playerLoadArray[i][7]);    //Set Constitution
             playerStats_TF[i][3].setText(playerLoadArray[i][8]);    //Set Intelligence
