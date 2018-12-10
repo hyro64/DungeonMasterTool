@@ -2,11 +2,23 @@
 PlayerIndex:0:
 Name:James:
 Player Lvl:Level 1:
-Amour Class::
-Hit points::
+Amour Class:30:
+Hit points:10:
 Strength:20:
 Dexterity:30:
 Constitution:45:
 Intelligence:12:
 Wisdom:10:
+Charisma:4:
+
+PlayerIndex:1:
+Name:finn:
+Player Lvl:Level 1:
+Amour Class:20:
+Hit points:0:
+Strength:11:
+Dexterity:16:
+Constitution:10:
+Intelligence:15:
+Wisdom:14:
 Charisma:4:

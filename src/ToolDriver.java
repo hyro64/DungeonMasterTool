@@ -12,7 +12,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -68,6 +67,9 @@ public class ToolDriver extends Application implements FileMenuInterface{
 
 
     private MonsterGenerator mnGen = new MonsterGenerator(MainWindow, scene_Main);
+
+    private int inPlayerIndex = 0;
+    private String playerLoadArray[][] = new String[maxPlayer][11];
     //******************************************************************************************************************
     public static void main(String[] args) { launch(args); }
     //******************************************************************************************************************
@@ -224,6 +226,45 @@ public class ToolDriver extends Application implements FileMenuInterface{
         inTextField[inPlayerIndex]= new TextField();
         return inTextField[inPlayerIndex];
     }
+    private HBox helperPlayerStatsHBox(int inPlayerIndex, int statsIndicator, String statsLabel,
+                                       HBox inPlayerStats_Outer_HBox[][], VBox playerStats_LblTF_VBox[][][],
+                                       HBox playerStats_LblTFSep_HBox[][][], Label inPlayerStatLabel[][][],
+                                       TextField inPlayerStatTF[][][]) {
+        inPlayerStats_Outer_HBox[inPlayerIndex][statsIndicator] = new HBox();
+        playerStats_LblTF_VBox[inPlayerIndex][statsIndicator][0] = new VBox();   // Holds Label and Textfield
+        playerStats_LblTF_VBox[inPlayerIndex][statsIndicator][1] = new VBox();   // Holds Label and Modifier
+
+        playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][0] = new HBox();    // Holds statsLabel label
+        playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][1] = new HBox();    // Holds statsLabel textField
+        playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][2] = new HBox();    // Holds statsLabel mod Lable
+        playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][3] = new HBox();    // Holds statsLabel mod result
+
+        inPlayerStatLabel[inPlayerIndex][statsIndicator][0]= new Label(statsLabel);
+        playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][0].getChildren().addAll(
+                inPlayerStatLabel[inPlayerIndex][statsIndicator][0]);
+        inPlayerStatTF[inPlayerIndex][statsIndicator][0] = new TextField();
+        inPlayerStatTF[inPlayerIndex][statsIndicator][0].setPromptText(statsLabel.substring(0,3));
+        inPlayerStatTF[inPlayerIndex][statsIndicator][0].setPrefColumnCount(5);
+        playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][1].getChildren().addAll(
+                inPlayerStatTF[inPlayerIndex][statsIndicator][0]);
+
+        inPlayerStatLabel[inPlayerIndex][statsIndicator][1] = new Label("Modifier:");
+        playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][2].getChildren().addAll(
+                inPlayerStatLabel[inPlayerIndex][statsIndicator][1]);
+        playerStats_LblTF_VBox[inPlayerIndex][statsIndicator][0].getChildren().addAll(
+                playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][0],
+                playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][1]
+        );
+
+        playerStats_LblTF_VBox[inPlayerIndex][statsIndicator][1].getChildren().addAll(
+                playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][2],
+                playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][3]);
+
+        inPlayerStats_Outer_HBox[inPlayerIndex][statsIndicator].getChildren().addAll(
+                playerStats_LblTF_VBox[inPlayerIndex][statsIndicator][0],
+                playerStats_LblTF_VBox[inPlayerIndex][statsIndicator][1]);
+        return inPlayerStats_Outer_HBox[inPlayerIndex][statsIndicator];
+    }
     //-----------------------------------END_Universal_Methods----------------------------------------------------------
     private Button makeSliderButton(Button inPlusMinusButton[][],int playerIndex, String addSub) {
         /***************************************************************************************************************
@@ -268,14 +309,9 @@ public class ToolDriver extends Application implements FileMenuInterface{
 
         return player_Hp_label_VBox[inPlayerIndex];
     }
-    private VBox init_PlayerStats(int inPlayerIndex,
-                                  VBox inPlayerStatsVBox[],
-                                  HBox inPlayerStats_Outer_HBox[][],
-                                  VBox playerStats_LblTF_VBox[][][],
-                                  HBox playerStats_LblTFSep_HBox[][][],
-                                  Label inPlayerStatLabel[][][],
-                                  TextField inPlayerStatTF[][][]
-                                  ) {
+    private VBox init_PlayerStats(int inPlayerIndex, VBox inPlayerStatsVBox[], HBox inPlayerStats_Outer_HBox[][],
+                                  VBox playerStats_LblTF_VBox[][][], HBox playerStats_LblTFSep_HBox[][][],
+                                  Label inPlayerStatLabel[][][], TextField inPlayerStatTF[][][]) {
         /***************************************************************************************************************
          * Player Index goes from 1-6 or whatever the "MaxPlayer" is.
          * inPlayerStatsVBox holds all the inPlayerStats_Outer_HBox.
@@ -303,7 +339,7 @@ public class ToolDriver extends Application implements FileMenuInterface{
         //-------------------------------Charisma_Score_&_Mod-----------------------------------------------------------
         helperPlayerStatsHBox(inPlayerIndex,5,"Charisma",inPlayerStats_Outer_HBox,
                 playerStats_LblTF_VBox, playerStats_LblTFSep_HBox,inPlayerStatLabel,inPlayerStatTF);
-    //--------------------------------Add_to_MainVBox-------------------------------------------------------------------
+    //-----------------------------------Add_to_Main_VBox---------------------------------------------------------------
         inPlayerStatsVBox[inPlayerIndex].setAlignment(Pos.CENTER_LEFT);
         inPlayerStatsVBox[inPlayerIndex].getChildren().addAll(
                 inPlayerStats_Outer_HBox[inPlayerIndex][0],
@@ -386,10 +422,10 @@ public class ToolDriver extends Application implements FileMenuInterface{
         sC.createFile("Op1.txt",sC.saveCampaign());
     }
     private void loadCampaign() {
-        /**
+        /***************************************************************************************************************
          * The try and catch is used to Open the file from File chooser.
          * It then uses the file and BufferedReader to break it into the string and skip White spaces
-         * */
+         * ************************************************************************************************************/
         try{
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Open Resource File");
@@ -406,59 +442,61 @@ public class ToolDriver extends Application implements FileMenuInterface{
                     line = reader.readLine();
                 }
             String [] strings = key.split(":");
-            String playIndex;
-            for (int i=0;i<=strings.length;i++) {
-                if (i%2 == 1){
-                    playIndex = strings[i];
-                    System.out.print(playIndex+"\n");
+
+            for (int i = 0; i <= strings.length; i++) {
+                if (strings[i].equalsIgnoreCase("PlayerIndex")) {
+                    inPlayerIndex = Integer.parseInt(strings[i+1]);
+                    playerLoadArray[playerIndex][0] = strings[i+1];
+                    System.out.println(playerLoadArray[playerIndex][0]);
+                }
+                else if(strings[i].equalsIgnoreCase("Name")){
+                    playerLoadArray[playerIndex][1] = strings[i+1];
+                    System.out.println(playerLoadArray[playerIndex][1]);
+                }
+                else if(strings[i].equalsIgnoreCase("Player Lvl")){
+                    playerLoadArray[playerIndex][2] = strings[i+1];
+                    System.out.println(playerLoadArray[playerIndex][2]);
+                }
+                else if(strings[i].equalsIgnoreCase("Amour Class")){
+                    playerLoadArray[playerIndex][3] = strings[i+1];
+                    System.out.println(playerLoadArray[playerIndex][3]);
+                }
+                else if(strings[i].equalsIgnoreCase("Hit points")){
+                    playerLoadArray[playerIndex][4] = strings[i+1];
+                    System.out.println(playerLoadArray[playerIndex][4]);
+                }
+                else if(strings[i].equalsIgnoreCase("Strength")) {
+                    playerLoadArray[playerIndex][5] = strings[i + 1];
+                    System.out.println(playerLoadArray[playerIndex][5]);
+                }
+                else if(strings[i].equalsIgnoreCase("Dexterity")) {
+                    playerLoadArray[playerIndex][6] = strings[i + 1];
+                    System.out.println(playerLoadArray[playerIndex][6]);
+                }
+                else if(strings[i].equalsIgnoreCase("Constitution")) {
+                    playerLoadArray[playerIndex][7] = strings[i + 1];
+                    System.out.println(playerLoadArray[playerIndex][7]);
+                }
+                else if(strings[i].equalsIgnoreCase("Intelligence")) {
+                    playerLoadArray[playerIndex][8] = strings[i + 1];
+                    System.out.println(playerLoadArray[playerIndex][8]);
+                }
+                else if(strings[i].equalsIgnoreCase("Wisdom")) {
+                    playerLoadArray[playerIndex][9] = strings[i + 1];
+                    System.out.println(playerLoadArray[playerIndex][9]);
+                }
+                else if(strings[i].equalsIgnoreCase("Charisma")) {
+                    playerLoadArray[playerIndex][10] = strings[i + 1];
+                    System.out.println(playerLoadArray[playerIndex][10]);
                 }
             }
         }
         catch (Exception e){
             e.getMessage();
-            e.getClass();
+            e.getStackTrace();
         }
     }
 //-------------------------------------------END_FILE_METHODS-----------------------------------------------------------
-    private HBox helperPlayerStatsHBox(int inPlayerIndex, int statsIndicator, String statsLabel,
-                                       HBox inPlayerStats_Outer_HBox[][], VBox playerStats_LblTF_VBox[][][],
-                                       HBox playerStats_LblTFSep_HBox[][][], Label inPlayerStatLabel[][][],
-                                       TextField inPlayerStatTF[][][]) {
-        inPlayerStats_Outer_HBox[inPlayerIndex][statsIndicator] = new HBox();
-        playerStats_LblTF_VBox[inPlayerIndex][statsIndicator][0] = new VBox();   // Holds Label and Textfield
-        playerStats_LblTF_VBox[inPlayerIndex][statsIndicator][1] = new VBox();   // Holds Label and Modifier
-
-        playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][0] = new HBox();    // Holds statsLabel label
-        playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][1] = new HBox();    // Holds statsLabel textField
-        playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][2] = new HBox();    // Holds statsLabel mod Lable
-        playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][3] = new HBox();    // Holds statsLabel mod result
-
-        inPlayerStatLabel[inPlayerIndex][statsIndicator][0]= new Label(statsLabel);
-        playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][0].getChildren().addAll(
-                inPlayerStatLabel[inPlayerIndex][statsIndicator][0]);
-        inPlayerStatTF[inPlayerIndex][statsIndicator][0] = new TextField();
-        inPlayerStatTF[inPlayerIndex][statsIndicator][0].setPromptText(statsLabel.substring(0,3));
-        inPlayerStatTF[inPlayerIndex][statsIndicator][0].setPrefColumnCount(5);
-        playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][1].getChildren().addAll(
-                inPlayerStatTF[inPlayerIndex][statsIndicator][0]);
-
-        inPlayerStatLabel[inPlayerIndex][statsIndicator][1] = new Label("Modifier:");
-        playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][2].getChildren().addAll(
-                inPlayerStatLabel[inPlayerIndex][statsIndicator][1]);
-        playerStats_LblTF_VBox[inPlayerIndex][statsIndicator][0].getChildren().addAll(
-                playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][0],
-                playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][1]
-        );
-
-        playerStats_LblTF_VBox[inPlayerIndex][statsIndicator][1].getChildren().addAll(
-                playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][2],
-                playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][3]);
-
-        inPlayerStats_Outer_HBox[inPlayerIndex][statsIndicator].getChildren().addAll(
-                playerStats_LblTF_VBox[inPlayerIndex][statsIndicator][0],
-                playerStats_LblTF_VBox[inPlayerIndex][statsIndicator][1]);
-        return inPlayerStats_Outer_HBox[inPlayerIndex][statsIndicator];
-    }
     private void createActions() {
         /****************************************************************************************************************
          * Creates the action for the buttons of the main window
