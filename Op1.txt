@@ -15,7 +15,7 @@ PlayerIndex:1:
 Name:finn:
 Player Lvl:Level 1:
 Amour Class:20:
-Hit points:0:
+Hit points:20:
 Strength:11:
 Dexterity:16:
 Constitution:10:

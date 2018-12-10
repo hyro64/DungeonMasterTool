@@ -29,11 +29,11 @@ public class ToolDriver extends Application implements FileMenuInterface{
     private Stage MainWindow;
     private Scene scene_Main;
     // Layout for the main_class------------------------------------------------------------------------------------
-    private BorderPane layoutMain = new BorderPane();                       // Outerpane for main window
+    private BorderPane layoutMain = new BorderPane();                       // OuterPane for main window
     private BorderPane centerWork = new BorderPane();                       // CenterPane that holds the players
     private BorderPane centerW_A_BP[] = new BorderPane[maxPlayer];          // CenterArea working
 
-    private HBox playerStats_c_L_AreaHB = new HBox(5);
+    private HBox playerStats_c_L_AreaHB = new HBox(5);               // HBox for Center left area
     private HBox playerStatsOuterHBox[][] = new HBox[maxPlayer][6];
     private HBox playerAdd_Center_Area_HB = new HBox(10);
     private HBox playerIndLayout[] = new HBox[maxPlayer];
@@ -51,7 +51,7 @@ public class ToolDriver extends Application implements FileMenuInterface{
     private TextField aC_Indicator_TF[] = new TextField[maxPlayer];
     private TextField hPIndicator[] = new TextField[maxPlayer];
     private TextField playerName_TF[] = new TextField[maxPlayer];
-    private TextField playerStats_TF[][][] = new TextField[maxPlayer][6][2];
+    private TextField playerStats_TF[][] = new TextField[maxPlayer][6];
 
     private Label Ac_Label[] = new Label[maxPlayer];
     private Label playerLvlSelection[] = new Label[maxPlayer];
@@ -68,7 +68,6 @@ public class ToolDriver extends Application implements FileMenuInterface{
 
     private MonsterGenerator mnGen = new MonsterGenerator(MainWindow, scene_Main);
 
-    private int inPlayerIndex = 0;
     private String playerLoadArray[][] = new String[maxPlayer][11];
     //******************************************************************************************************************
     public static void main(String[] args) { launch(args); }
@@ -219,6 +218,12 @@ public class ToolDriver extends Application implements FileMenuInterface{
         inLabel[inPlayerIndex] = new Label(inText);
         return inLabel[inPlayerIndex];
     }
+    //Todo
+    private Label ModifierLabel(Label inLabel[],int inPlayerIndex,){
+
+        inLabel[inPlayerIndex] = new Label();
+        return inLabel[inPlayerIndex];
+    }
     private TextField uni_create_TF(TextField inTextField[], int inPlayerIndex) {
         /***************************************************************************************************************
          * Creates the Text field. It takes a text field array and uses the index create the text field.
@@ -229,24 +234,24 @@ public class ToolDriver extends Application implements FileMenuInterface{
     private HBox helperPlayerStatsHBox(int inPlayerIndex, int statsIndicator, String statsLabel,
                                        HBox inPlayerStats_Outer_HBox[][], VBox playerStats_LblTF_VBox[][][],
                                        HBox playerStats_LblTFSep_HBox[][][], Label inPlayerStatLabel[][][],
-                                       TextField inPlayerStatTF[][][]) {
+                                       TextField inPlayerStatsTF[][]) {
         inPlayerStats_Outer_HBox[inPlayerIndex][statsIndicator] = new HBox();
         playerStats_LblTF_VBox[inPlayerIndex][statsIndicator][0] = new VBox();   // Holds Label and Textfield
         playerStats_LblTF_VBox[inPlayerIndex][statsIndicator][1] = new VBox();   // Holds Label and Modifier
 
         playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][0] = new HBox();    // Holds statsLabel label
         playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][1] = new HBox();    // Holds statsLabel textField
-        playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][2] = new HBox();    // Holds statsLabel mod Lable
+        playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][2] = new HBox();    // Holds statsLabel mod Label
         playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][3] = new HBox();    // Holds statsLabel mod result
 
         inPlayerStatLabel[inPlayerIndex][statsIndicator][0]= new Label(statsLabel);
         playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][0].getChildren().addAll(
                 inPlayerStatLabel[inPlayerIndex][statsIndicator][0]);
-        inPlayerStatTF[inPlayerIndex][statsIndicator][0] = new TextField();
-        inPlayerStatTF[inPlayerIndex][statsIndicator][0].setPromptText(statsLabel.substring(0,3));
-        inPlayerStatTF[inPlayerIndex][statsIndicator][0].setPrefColumnCount(5);
+        inPlayerStatsTF[inPlayerIndex][statsIndicator] = new TextField();
+        inPlayerStatsTF[inPlayerIndex][statsIndicator].setPromptText(statsLabel.substring(0,3));
+        inPlayerStatsTF[inPlayerIndex][statsIndicator].setPrefColumnCount(5);
         playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][1].getChildren().addAll(
-                inPlayerStatTF[inPlayerIndex][statsIndicator][0]);
+                inPlayerStatsTF[inPlayerIndex][statsIndicator]);
 
         inPlayerStatLabel[inPlayerIndex][statsIndicator][1] = new Label("Modifier:");
         playerStats_LblTFSep_HBox[inPlayerIndex][statsIndicator][2].getChildren().addAll(
@@ -311,7 +316,7 @@ public class ToolDriver extends Application implements FileMenuInterface{
     }
     private VBox init_PlayerStats(int inPlayerIndex, VBox inPlayerStatsVBox[], HBox inPlayerStats_Outer_HBox[][],
                                   VBox playerStats_LblTF_VBox[][][], HBox playerStats_LblTFSep_HBox[][][],
-                                  Label inPlayerStatLabel[][][], TextField inPlayerStatTF[][][]) {
+                                  Label inPlayerStatLabel[][][], TextField inPlayerStatTF[][]) {
         /***************************************************************************************************************
          * Player Index goes from 1-6 or whatever the "MaxPlayer" is.
          * inPlayerStatsVBox holds all the inPlayerStats_Outer_HBox.
@@ -408,12 +413,12 @@ public class ToolDriver extends Application implements FileMenuInterface{
 
             FIE_playerAC[currentplayer] = aC_Indicator_TF[currentplayer].getText();
             FIE_playerHP[currentplayer] = hPIndicator[currentplayer].getText();
-            FIE_playerStr[currentplayer] = playerStats_TF[currentplayer][0][0].getText();
-            FIE_playerDex[currentplayer] = playerStats_TF[currentplayer][1][0].getText();
-            FIE_playerCon[currentplayer] = playerStats_TF[currentplayer][2][0].getText();
-            FIE_playerInt[currentplayer] = playerStats_TF[currentplayer][3][0].getText();
-            FIE_playerWis[currentplayer] = playerStats_TF[currentplayer][4][0].getText();
-            FIE_playerCha[currentplayer] = playerStats_TF[currentplayer][5][0].getText();
+            FIE_playerStr[currentplayer] = playerStats_TF[currentplayer][0].getText();
+            FIE_playerDex[currentplayer] = playerStats_TF[currentplayer][1].getText();
+            FIE_playerCon[currentplayer] = playerStats_TF[currentplayer][2].getText();
+            FIE_playerInt[currentplayer] = playerStats_TF[currentplayer][3].getText();
+            FIE_playerWis[currentplayer] = playerStats_TF[currentplayer][4].getText();
+            FIE_playerCha[currentplayer] = playerStats_TF[currentplayer][5].getText();
         }
         // Creates the object to save the information
         FileExport sC = new FileExport(playerIndex,FIE_playerNames, FIE_playerLvl, FIE_playerAC,
@@ -445,56 +450,46 @@ public class ToolDriver extends Application implements FileMenuInterface{
 
             for (int i = 0; i <= strings.length; i++) {
                 if (strings[i].equalsIgnoreCase("PlayerIndex")) {
-                    inPlayerIndex = Integer.parseInt(strings[i+1]);
+                    playerIndex = Integer.parseInt(strings[i+1]);
                     playerLoadArray[playerIndex][0] = strings[i+1];
-                    System.out.println(playerLoadArray[playerIndex][0]);
+                    loadMarker(MainWindow, playerStats_c_L_AreaHB);
                 }
                 else if(strings[i].equalsIgnoreCase("Name")){
                     playerLoadArray[playerIndex][1] = strings[i+1];
-                    System.out.println(playerLoadArray[playerIndex][1]);
                 }
                 else if(strings[i].equalsIgnoreCase("Player Lvl")){
                     playerLoadArray[playerIndex][2] = strings[i+1];
-                    System.out.println(playerLoadArray[playerIndex][2]);
                 }
                 else if(strings[i].equalsIgnoreCase("Amour Class")){
                     playerLoadArray[playerIndex][3] = strings[i+1];
-                    System.out.println(playerLoadArray[playerIndex][3]);
                 }
                 else if(strings[i].equalsIgnoreCase("Hit points")){
                     playerLoadArray[playerIndex][4] = strings[i+1];
-                    System.out.println(playerLoadArray[playerIndex][4]);
                 }
                 else if(strings[i].equalsIgnoreCase("Strength")) {
                     playerLoadArray[playerIndex][5] = strings[i + 1];
-                    System.out.println(playerLoadArray[playerIndex][5]);
                 }
                 else if(strings[i].equalsIgnoreCase("Dexterity")) {
                     playerLoadArray[playerIndex][6] = strings[i + 1];
-                    System.out.println(playerLoadArray[playerIndex][6]);
                 }
                 else if(strings[i].equalsIgnoreCase("Constitution")) {
                     playerLoadArray[playerIndex][7] = strings[i + 1];
-                    System.out.println(playerLoadArray[playerIndex][7]);
                 }
                 else if(strings[i].equalsIgnoreCase("Intelligence")) {
                     playerLoadArray[playerIndex][8] = strings[i + 1];
-                    System.out.println(playerLoadArray[playerIndex][8]);
                 }
                 else if(strings[i].equalsIgnoreCase("Wisdom")) {
                     playerLoadArray[playerIndex][9] = strings[i + 1];
-                    System.out.println(playerLoadArray[playerIndex][9]);
                 }
                 else if(strings[i].equalsIgnoreCase("Charisma")) {
                     playerLoadArray[playerIndex][10] = strings[i + 1];
-                    System.out.println(playerLoadArray[playerIndex][10]);
                 }
             }
         }
         catch (Exception e){
-            e.getMessage();
             e.getStackTrace();
         }
+        fillInfo();
     }
 //-------------------------------------------END_FILE_METHODS-----------------------------------------------------------
     private void createActions() {
@@ -520,6 +515,16 @@ public class ToolDriver extends Application implements FileMenuInterface{
             layoutMain.setLeft(centerWork);
             inMainWindow.setScene(scene_Main);
             playerIndex++;
+        }
+        else { alertDisplay("Warning","No more players allowed"); }
+    }
+    private void loadMarker(Stage inMainWindow, HBox inCenterAreaHB) {
+        // Adds player indicators to the Main window
+        if(playerIndex != maxPlayer || playerIndex != userMaxPlayer) {
+            centerWork.setTop(playerAdd_Center_Area_HB);
+            inCenterAreaHB.getChildren().addAll(center_WA_BP(playerIndex));
+            layoutMain.setLeft(centerWork);
+            inMainWindow.setScene(scene_Main);
         }
         else { alertDisplay("Warning","No more players allowed"); }
     }
@@ -552,6 +557,19 @@ public class ToolDriver extends Application implements FileMenuInterface{
         centerWork.setCenter(null);
         playerIndex = 0;
     }
-
+    public void fillInfo(){
+        for (int i = 0;i <=playerIndex;i++) {
+            playerName_TF[i].setText(playerLoadArray[i][1]);        //Set Name
+            playerLevel_CBox[i].setValue(playerLoadArray[i][2]);    //Set Level
+            aC_Indicator_TF[i].setText(playerLoadArray[i][3]);      //Set Armour
+            hPIndicator[i].setText(playerLoadArray[i][4]);          //Set HP
+            playerStats_TF[i][0].setText(playerLoadArray[i][5]);    //Set Strength
+            playerStats_TF[i][1].setText(playerLoadArray[i][6]);    //Set Dexterity
+            playerStats_TF[i][2].setText(playerLoadArray[i][7]);    //Set Constitution
+            playerStats_TF[i][3].setText(playerLoadArray[i][8]);    //Set Intelligence
+            playerStats_TF[i][4].setText(playerLoadArray[i][9]);    //Set Wisdom
+            playerStats_TF[i][5].setText(playerLoadArray[i][10]);   //Set Charisma
+        }
+    }
 
 }// End Of Class--------------------------------------------------------------------------------------------------------
